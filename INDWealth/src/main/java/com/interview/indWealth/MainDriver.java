@@ -27,8 +27,8 @@ public class MainDriver {
 		
 		EarningOfBusDriverFinder earningFinder = new EarningOfBusDriverFinder(noOfGroups, groupSizes, busCapacity, noOfRounds);
 		
-	    int earning = earningFinder.earningCalculator();
-	    System.out.println("Total earning: " + earning);
+	        int earning = earningFinder.earningCalculator();
+	        System.out.println("Total earning: " + earning);
 	}
 
 }

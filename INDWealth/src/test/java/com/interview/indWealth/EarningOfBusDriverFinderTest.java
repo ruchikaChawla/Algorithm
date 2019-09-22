@@ -62,8 +62,8 @@ public class EarningOfBusDriverFinderTest {
 	}
 	
 	@After
-    public void after() throws Exception {
-		earningFinder = null;
+        public void after() throws Exception {
+	        earningFinder = null;
 	}
 
 }
