@@ -26,25 +26,37 @@ public class EarningOfBusDriverFinder {
 			return 0;
 
 		Queue<Integer> groupQueue = new LinkedList<Integer>();
+		Queue<Integer> groupsInsideBusQueue = new LinkedList<Integer>();
 		for (int groupSize : groupSizes) {
 			groupQueue.offer(groupSize);
 		}
 
 		int countForRounds = 0;
 		int earning = 0;
-		while (countForRounds < noOfGroups) {
+		while (countForRounds < noOfRounds) {
 
 			int currentCapacity = 0;
 
 			while (currentCapacity <= busCapacity) {
-				int firstGrpSize = groupQueue.peek();
+				Integer firstGrpSize = groupQueue.peek();
+
+				if (firstGrpSize == null) {
+					break;
+				}
+
 				if ((currentCapacity + firstGrpSize) <= busCapacity) {
 					currentCapacity += firstGrpSize;
-					int getGrpSize = groupQueue.poll();
-					groupQueue.offer(getGrpSize);
+					Integer getGrpSize = groupQueue.poll();
+					groupsInsideBusQueue.offer(getGrpSize);
 				} else
 					break;
 			}
+
+			while (!groupsInsideBusQueue.isEmpty()) {
+				Integer grpSize = groupsInsideBusQueue.poll();
+				groupQueue.offer(grpSize);
+			}
+
 			earning = earning + currentCapacity;
 			countForRounds++;
 		}
@@ -66,4 +78,13 @@ public class EarningOfBusDriverFinder {
 	public void setNoOfRounds(int noOfRounds) {
 		this.noOfRounds = noOfRounds;
 	}
+
+	public int[] getGroupSizes() {
+		return groupSizes;
+	}
+
+	public int getNoOfRounds() {
+		return noOfRounds;
+	}
+
 }
